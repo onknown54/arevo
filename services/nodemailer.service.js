@@ -1,52 +1,34 @@
 const nodemailer = require("nodemailer");
 const ejs = require("ejs");
 const path = require("path");
+const catchError = require("../utilities/catchErr.utility");
 
 const SMTP_USER = process.env.SMTP_USER;
-const SMTP_PORT = Number(process.env.SMTP_PORT);
-const SMTP_HOST = process.env.SMTP_HOST;
-const SMTP_PASSWORD = process.env.SMTP_PASSWORD;
+// const SMTP_PASSWORD = process.env.SMTP_PASSWORD;
 
 const transporter = nodemailer.createTransport({
-  host: SMTP_HOST,
-  port: SMTP_PORT,
+  host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT,
   secure: true,
   auth: {
-    user: SMTP_USER,
-    pass: "MRmA7$IEdzYH" || SMTP_PASSWORD,
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASSWORD,
   },
 });
 
-const sendPasswordOtp = async (otpCode, email) => {
-  const template_path = path.join(
-    __dirname,
-    "../../views/emails/passwordOtp.ejs",
-  );
+exports.sendNewsletters = catchError(async (data, email) => {
+  const templatePath = path.join(__dirname, "../views/newsletter.view.ejs");
 
-  const html = await ejs.renderFile(template_path, { otpCode });
+  const html = await ejs.renderFile(templatePath, { data }).catch((err) => {
+    throw new Error(`EJS rendering failed: ${err.message}`);
+  });
 
-  return await transporter.sendMail({
+  const info = await transporter.sendMail({
     from: SMTP_USER,
     to: email,
-    subject: "Betuptip Password Verification",
+    subject: "Arevo International contact information",
     html,
   });
-};
 
-const sendEmailOtp = async (otpCode, email) => {
-  const template_path = path.resolve(
-    __dirname,
-    "../../views/emails/emailOtp.ejs",
-  );
-
-  const html = await ejs.renderFile(template_path, { otpCode });
-
-  return await transporter.sendMail({
-    from: SMTP_USER,
-    to: email,
-    subject: "Betuptip Activation 🎉🎉",
-    html,
-  });
-};
-
-module.exports = { sendPasswordOtp, sendEmailOtp };
+  return info;
+});
