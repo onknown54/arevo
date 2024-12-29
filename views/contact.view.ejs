@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Form Submission</title>
+    <style>
+      *,
+      *::after,
+      *::before {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        font-size: 62.5%;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #333;
+        font-size: 1.6rem;
+      }
+      .container {
+        max-width: 70rem;
+        margin: 0 auto 2rem;
+        background-color: #ffffff;
+        box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        border: 1px solid #e0e0e0;
+      }
+      .header {
+        background-color: #132347;
+        color: #ffffff;
+        text-align: center;
+        padding: 2rem 1rem;
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 2.4rem;
+      }
+      .content {
+        padding: 2rem;
+      }
+      .content h2 {
+        font-size: 1.8rem;
+        color: #132347;
+        margin-bottom: 1rem;
+      }
+      .table-container {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2rem 0;
+      }
+      .table-container th,
+      .table-container td {
+        padding: 1rem;
+        border: 0.1rem solid #ddd;
+        text-align: left;
+      }
+      .table-container th {
+        background-color: #f4f4f4;
+        color: #333;
+        font-weight: bold;
+      }
+      .footer {
+        background-color: #f8f9fa;
+        text-align: center;
+        padding: 1rem;
+        font-size: 1.2rem;
+        color: #888;
+      }
+      .footer a {
+        color: #4caf50;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Arevo International</h1>
+      </div>
+      <div class="content">
+        <h2>Contact us form submission</h2>
+        <table class="table-container">
+          <tr>
+            <th>Field</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td><strong>First Name</strong></td>
+            <td>{{ firstname }}</td>
+          </tr>
+          <tr>
+            <td><strong>Middle Name</strong></td>
+            <td>{{ middlename || "Not provided" }}</td>
+          </tr>
+          <tr>
+            <td><strong>Last Name</strong></td>
+            <td>{{ lastname }}</td>
+          </tr>
+          <tr>
+            <td><strong>Education</strong></td>
+            <td>{{ education }}</td>
+          </tr>
+          <tr>
+            <td><strong>Profession</strong></td>
+            <td>{{ profession }}</td>
+          </tr>
+          <tr>
+            <td><strong>Nationality</strong></td>
+            <td>{{ nationality }}</td>
+          </tr>
+          <tr>
+            <td><strong>Country of Residence</strong></td>
+            <td>{{ country_of_residence }}</td>
+          </tr>
+          <tr>
+            <td><strong>Race</strong></td>
+            <td>{{ race }}</td>
+          </tr>
+          <tr>
+            <td><strong>Weight</strong></td>
+            <td>{{ weight }}</td>
+          </tr>
+          <tr>
+            <td><strong>Date of Birth</strong></td>
+            <td>{{ date_of_birth }}</td>
+          </tr>
+          <tr>
+            <td><strong>Height</strong></td>
+            <td>{{ height }}</td>
+          </tr>
+          <tr>
+            <td><strong>Eye Color</strong></td>
+            <td>{{ eyeColor }} <%= otpCode %></td>
+          </tr>
+          <tr>
+            <td><strong>Address</strong></td>
+            <td>{{ address || "Not provided" }}</td>
+          </tr>
+          <tr>
+            <td><strong>Email</strong></td>
+            <td>{{ email }}</td>
+          </tr>
+          <tr>
+            <td><strong>Illness</strong></td>
+            <td>{{ illness || "None" }}</td>
+          </tr>
+          <tr>
+            <td><strong>Medications</strong></td>
+            <td>{{ medications ? "Yes" : "No" }}</td>
+          </tr>
+          <tr>
+            <td><strong>Gender</strong></td>
+            <td>{{ gender }}</td>
+          </tr>
+          <tr>
+            <td><strong>Relationship Status</strong></td>
+            <td>{{ relationship_status }}</td>
+          </tr>
+          <tr>
+            <td><strong>Relocation Preferences</strong></td>
+            <td>{{ relocation.join(", ") }}</td>
+          </tr>
+          <tr>
+            <td><strong>Deported</strong></td>
+            <td>{{ deported ? "Yes" : "No" }}</td>
+          </tr>
+          <tr>
+            <td><strong>Deported Country</strong></td>
+            <td>{{ deported_country || "None" }}</td>
+          </tr>
+          <tr>
+            <td><strong>Visa Type</strong></td>
+            <td>{{ visa_type }}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="footer">
+        <p>
+          Thank you for your submission. For any queries,
+          <a href="mailto:support@example.com">contact support</a>.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

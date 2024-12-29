@@ -1,31 +1,42 @@
 /* eslint-disable linebreak-style */
-const User = require("../models/User");
+const Newsletter = require("../models/Contact");
+const { sendNewsletters } = require("../services/nodemailer.service");
 const catchErr = require("../utilities/catchErr.utility");
-const throwError = require("../utilities/errorHandler.utility");
-const APIFeature = require("../utilities/APIFeature");
+const { SUCCESS } = require("../utilities/response.utility");
 
-const { ensureObject } = require("../utilities/help.utility");
+exports.sendNewsletter = catchErr(async (req, resp) => {
+  const requestData = req.body;
+  await sendNewsletters(requestData, "lekanm715@gmail.com");
 
-exports.getUser = catchErr(async (req, resp, next) => {
-  const { id, subscriptionInfo } = ensureObject(req.user);
-  if (!id) return next(new throwError("Unable to proccess request", 400));
-
-  const userInst = new APIFeature(User.findOne())
-    .find({ _id: id, status: "active" })
-    .limitFields();
-  let user = await userInst.query;
-
-  if (!user) return next(new throwError("Unable to proccess request", 400));
-
-  user = user.toObject();
-
-  resp.status(200).json({
-    status: true,
-    subscription_count: subscriptionInfo.count,
-    message: "Fetched successfully",
-    user: {
-      ...user,
-      subscription_plan: subscriptionInfo.plans.join(", "),
-    },
+  await Newsletter.create({
+    firstname: requestData.firstname,
+    middlename: requestData.middlename,
+    lastname: requestData.lastname,
+    education: requestData.education,
+    profession: requestData.profession,
+    nationality: requestData.nationality,
+    country_of_residence: requestData.country_of_residence,
+    race: requestData.race,
+    weight: requestData.weight,
+    date_of_birth: requestData.date_of_birth,
+    height: requestData.height,
+    eyeColor: requestData.eyeColor,
+    address: requestData.address,
+    email: requestData.email,
+    illness: requestData.illness,
+    medications: requestData.medications,
+    gender: requestData.gender,
+    relationship_status: requestData.relationship_status,
+    relocation: requestData.relocation,
+    deported: requestData.deported,
+    deported_country: requestData.deported_country,
+    visa_type: requestData.visa_type,
   });
+
+  return SUCCESS(resp, "Newsletter sent successfully");
+});
+
+exports.getNewsletters = catchErr(async (req, resp) => {
+  const newsletters = await Newsletter.find();
+  return SUCCESS(resp, "Newsletter sent successfully", newsletters);
 });

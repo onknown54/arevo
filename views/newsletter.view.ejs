@@ -1,56 +1,192 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Reset Verification Code</title>
+    <title>Contact Form Submission</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f9f9f9;
+      *,
+      *::after,
+      *::before {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        font-size: 62.5%;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
         color: #333;
+        font-size: 1.6rem;
       }
       .container {
-        max-width: 600px;
-        margin: 20px auto;
-        background-color: #fff;
-        padding: 20px;
-        border: 1px solid #dcdcdc;
-        border-radius: 10px;
+        max-width: 70rem;
+        margin: 0 auto 2rem;
+        background-color: #ffffff;
+        box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        border: 1px solid #e0e0e0;
       }
-      h3 {
-        font-size: 30px;
-        font-weight: 500;
+      .header {
+        background-color: #132347;
+        color: #ffffff;
         text-align: center;
+        padding: 2rem 1rem;
       }
-      h1 {
-        font-size: 40px;
-        font-weight: 600;
-        text-align: center;
-        color: black;
+      .header h1 {
+        margin: 0;
+        font-size: 2.4rem;
+      }
+      .content {
+        padding: 2rem;
+      }
+      .content h2 {
+        font-size: 1.8rem;
+        color: #132347;
+        margin-bottom: 1rem;
+      }
+      .table-container {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2rem 0;
+      }
+      .table-container th,
+      .table-container td {
+        padding: 1rem;
+        border: 0.1rem solid #ddd;
+        text-align: left;
+      }
+      .table-container th {
+        background-color: #f4f4f4;
+        color: #333;
+        font-weight: bold;
       }
       .footer {
-        padding: 10px 0;
+        background-color: #f8f9fa;
         text-align: center;
-        font-size: 12px;
-        color: #777;
+        padding: 1rem;
+        font-size: 1.2rem;
+        color: #888;
+      }
+      .footer a {
+        color: #4caf50;
+        text-decoration: none;
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <p>
-        Betuptip <br />
-        Explore the world of endless possibilities with future predictions that
-        give you a better stand.
-      </p>
-      <h3>Your Reset Verification Code</h3>
-      <h1><%= otpCode %></h1>
-      <p>Join and stay tuned for more important updates.</p>
-      <div class="footer">© Copyright. betuptip.com</div>
+      <div class="header">
+        <h1>Arevo International</h1>
+      </div>
+      <div class="content">
+        <h2>Contact us form submission</h2>
+        <table class="table-container">
+          <tr>
+            <th>Field</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td><strong>First Name</strong></td>
+            <td><%= data.firstname %></td>
+          </tr>
+          <tr>
+            <td><strong>Middle Name</strong></td>
+            <td><%= data.middlename %></td>
+          </tr>
+          <tr>
+            <td><strong>Last Name</strong></td>
+            <td><%= data.lastname %></td>
+          </tr>
+          <tr>
+            <td><strong>Education</strong></td>
+            <td><%= data.education %></td>
+          </tr>
+          <tr>
+            <td><strong>Profession</strong></td>
+            <td><%= data.profession %></td>
+          </tr>
+          <tr>
+            <td><strong>Nationality</strong></td>
+            <td><%= data.nationality %></td>
+          </tr>
+          <tr>
+            <td><strong>Country of Residence</strong></td>
+            <td><%= data.country_of_residence %></td>
+          </tr>
+          <tr>
+            <td><strong>Race</strong></td>
+            <td><%= data.race %></td>
+          </tr>
+          <tr>
+            <td><strong>Weight</strong></td>
+            <td><%= data.weight %></td>
+          </tr>
+          <tr>
+            <td><strong>Date of Birth</strong></td>
+            <td><%= data.date_of_birth %></td>
+          </tr>
+          <tr>
+            <td><strong>Height</strong></td>
+            <td><%= data.height %></td>
+          </tr>
+          <tr>
+            <td><strong>Eye Color</strong></td>
+            <td><%= data.eyeColor %></td>
+          </tr>
+          <tr>
+            <td><strong>Address</strong></td>
+            <td><%= data.address %></td>
+          </tr>
+          <tr>
+            <td><strong>Email</strong></td>
+            <td><%= data.email %></td>
+          </tr>
+          <tr>
+            <td><strong>Illness</strong></td>
+            <td><%= data.illness %></td>
+          </tr>
+          <tr>
+            <td><strong>Medications</strong></td>
+            <td><%= data.medications %></td>
+          </tr>
+          <tr>
+            <td><strong>Gender</strong></td>
+            <td><%= data.gender %></td>
+          </tr>
+          <tr>
+            <td><strong>Relationship Status</strong></td>
+            <td><%= data.relationship_status %></td>
+          </tr>
+          <tr>
+            <td><strong>Relocation Preferences</strong></td>
+            <td><%= data.relocation %></td>
+          </tr>
+          <tr>
+            <td><strong>Deported</strong></td>
+            <td><%= data.deported %></td>
+          </tr>
+          <tr>
+            <td><strong>Deported Country</strong></td>
+            <td><%= data.deported_country %></td>
+          </tr>
+          <tr>
+            <td><strong>Visa Type</strong></td>
+            <td><%= data.visa_type %></td>
+          </tr>
+        </table>
+      </div>
+      <div class="footer">
+        <p>
+          Thank you for your submission. For any queries,
+          <a href="mailto:support@example.com">contact support</a>.
+        </p>
+      </div>
     </div>
   </body>
 </html>

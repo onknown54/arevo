@@ -1,9 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const { getUser } = require("../controllers/newsletter.controller");
+const {
+  sendNewsletter,
+  getNewsletters,
+} = require("../controllers/newsletter.controller");
 const { validateBody } = require("../middlewares/joi.middleware");
-const { loginSchema } = require("../utilities/validationSchema.utility");
+const { contactSchema } = require("../utilities/validationSchema.utility");
 
-router.post("/", validateBody(loginSchema), getUser);
+router
+  .route("/")
+  .post(validateBody(contactSchema), sendNewsletter)
+  .get(getNewsletters);
 
 module.exports = router;
